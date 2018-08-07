@@ -9,7 +9,6 @@
       height: 100vh;
       width: 100vw;
       overflow:hidden;
-      /* position: relative; */
     }
     .container{
       height: 100vh;
@@ -20,80 +19,7 @@
       align-content: center;
       justify-content: center;
     }
-    /* .cuadrado{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100px;
-      height: 100px;
-      background: green;
-      border-radius: 50%;
-      position: absolute;
-      margin: 20px;
-      transition: .5s;
-      animation-name: cuadrado, rebote;
-      animation-duration: 2s,0.2s;
-      animation-delay: 0.5s;
-      animation-iteration-count: infinite,19;
-      animation-direction: alternate;
-      animation-fill-mode: forwards;
 
-    }
-    .container:hover .cuadrado
-    {animation-play-state: paused;
-    }
-    .Linear{
-      animation-timing-function: linear;
-    }
-    .ease{
-      animation-timing-function:ease;
-    }
-    .ease-in{
-      animation-timing-function:ease-in;
-    }
-    .ease-in-out{
-      animation-timing-function:ease-in-out;
-    }
-    .ease-out{
-      animation-timing-function:ease-out;
-    }
-    .step-end{
-      animation-timing-function:step-end;
-    }
-    .step-start{
-      animation-timing-function:step-start;
-    }
-    .cubic-bezier{
-      animation-timing-function:cubic-bezier(.45,0.1,0.69,1.46);
-    }
-    .steps{
-      animation-timing-function:steps(60);
-    }
-    @keyframes cuadrado {
-      0%{
-        left: 0;
-      }
-      100%{
-        left: calc(100% - 100px);
-      }
-    }
-    @keyframes rebote {
-      from{
-        transform: translateY(-20px);
-      }
-      to{
-        transform: translateY(10px) scale(1,.8);
-      }
-    }
-
-    @keyframes escalera {
-      from{
-        transform: translateY(0);
-      }
-      to{
-        transform: translateY(100px);
-      }
-    } */
     a{
       border:1px solid red;
       border-radius: 5px;
@@ -102,7 +28,7 @@
       transition: 0.5s;
       color: transparent;
     }
-    button{
+    #start{
       text-align: center;
       background: #7dc800;
       padding: .8em .8em;
@@ -117,7 +43,7 @@
       will-change: transform;
     }
 
-    button:active{
+    #start:active{
       transform: scale(.9);
     }
     .group_buttons{
@@ -154,7 +80,7 @@
       width: 200px;
       height: 200px;
       position: fixed;
-      transition: 2s;
+      /* transition: 2s; */
     }
     .win{
       top:50vh;
@@ -165,16 +91,135 @@
       right: -200px;
     }
     .ani_win{
-      transform: translateX(200px) rotate(45deg);
+      animation-name: ani_win;
+      animation-duration: 2s;
+      animation-iteration-count: 1;
     }
     .ani_lost{
-      transform: translateX(-200px) rotate(-45deg);
+      animation-name: ani_lost;
+      animation-duration: 2s;
+      animation-iteration-count: 1;
+    }
+    @keyframes ani_lost {
+      0%{
+        transform: translateX(200px) rotate(0deg);
+      }
+      30%{
+        transform: translateX(-200px) rotate(-45deg);
+      }
+
+      60%{
+        transform: translateX(-200px) rotate(-45deg);
+      }
+      100%{
+        transform: translateX(200px) rotate(0deg);
+      }
+    }
+
+    @keyframes ani_win {
+      0%{
+        transform: translateX(-200px) rotate(0deg);
+      }
+      30%{
+        transform: translateX(200px) rotate(45deg);
+      }
+
+      60%{
+        transform: translateX(200px) rotate(45deg);
+      }
+      100%{
+        transform: translateX(-200px) rotate(0deg);
+      }
     }
 
     img{
       width: 100%;
       height: 100%;
     }
+
+.overlay{
+  background: rgba(0,0,0,0);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  transition: 1s;
+  z-index: 2;
+}
+.modal{
+  vertical-align: center;
+  width: 500px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  /* animation-duration: 0.8s;
+  animation-name: animationIn;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1; */
+  box-shadow: -5px 5px 20px 5px rgba(0,0,0,0.2);
+  text-align: center;
+  transform: translateY(-3000px);
+}
+
+
+
+.modal-buttons button{
+  border-radius: 5px;
+  padding: 5px;
+   cursor: pointer;
+  color: white;
+  padding-bottom: 10px;
+  box-shadow: inset 0 -5px 5px 0 rgba(0,0,0,0.2);
+}
+
+.modal-buttons button:nth-of-type(1){
+    background-color: green;
+}
+
+@keyframes animationIn {
+  0%{
+    transform: translateY(-3000px);
+  }
+  60%{
+    transform: translateY(25px);
+  }
+  75%{
+    transform: translateY(-10px);
+  }
+  90%{
+    transform: translateY(5px);
+  }
+  100%{
+    transform: translateY(0px);
+  }
+}
+
+@keyframes animationOut {
+  0%{
+    transform: translateY(0px);
+  }
+  10%{
+    transform: translateY(5px);
+  }
+  25%{
+    transform: translateY(-10px);
+  }
+  45%{
+    transform: translateY(25px);
+  }
+  70%{
+    transform: translateY(-30px);
+  }
+  100%{
+    transform: translateY(-750px);
+  }
+}
+
     </style>
   </head>
   <body>
@@ -185,9 +230,17 @@
       <img src="lost2.png" alt="">
     </div>
 
+    <div class="overlay" id="overlay">
+      <div class="modal" id="modal">
+          <h1 id="title"></h1>
+          <p id="parrafo"></p>
+          <div class="modal-buttons">
+            <button id="next">Continuar</button>
+          </div>
+      </div>
+    </div>
 
     <div class="container" id="container">
-
       <a href="#">0</a>
       <a href="#">1</a>
       <a href="#">2</a>
@@ -206,12 +259,17 @@
       <a href="#">15</a>
       <div class="group_buttons">
         <button type="button" id="start">Inicio</button>
-        <button type="button" id="next">Continuar</button>
+        <!-- <button type="button" id="next">Continuar</button> -->
       </div>
     </div>
 
       <script type="text/javascript">
         // var $a=document.getElementById('prueba');
+        var $title=document.getElementById('title');
+        var $parrafo=document.getElementById('parrafo');
+        var $overlay=document.getElementById('overlay');
+        var $modal=document.getElementById('modal');
+
         var $win=document.getElementById('win');
         var $lost=document.getElementById('lost');
         var $container=document.getElementById('container');
@@ -225,38 +283,68 @@
         var isActive=0;
 
 
+      $win.addEventListener('animationend',()=>{
+        $win.classList.remove('ani_win');
+      });
+
+      $lost.addEventListener('animationend',()=>{
+        $lost.classList.remove('ani_lost');
+      });
+
+
       for (var i = 0; i < 16; i++) {
-        $container.getElementsByTagName('a')[i].addEventListener('click', (event) =>{
-          // $a.classList.add('ok');
-          if(isActive==1)
-          {
-            if (event.toElement.text == correctas[contadorCorrectas]) {
-              event.toElement.classList.add('ok');
-              contadorCorrectas=contadorCorrectas+1;
-              if (contadorCorrectas==cant) {
-                alert("GANASTE PASAS AL NIVEL:"+(cant+1));
-                contadorCorrectas=0;
-                cant=cant+1;
-                $win.classList.add('ani_win');
-              }
-            }else {
-              event.toElement.classList.add('bad');
-              alert("PERDISTE :(");
-              $container.getElementsByTagName('a')[correctas[contadorCorrectas]].classList.add('ok');
-              contadorCorrectas=0;
-              cant=1;
-              $lost.classList.add('ani_lost');
-            }
-            setTimeout(limpiar, 500);
-          }
-        })
+        $container.getElementsByTagName('a')[i].addEventListener('click', (event)=>{
+          isClick(event);
+        });
+        $container.getElementsByTagName('a')[i].addEventListener('animationend',(event)=>{
+          event.target.classList.remove('ok');
+          event.target.classList.remove('bad');
+        });
       }
 
+      function isClick(event){
+        if(isActive==1)
+        {
+          if (event.toElement.text == correctas[contadorCorrectas]) {
+            event.toElement.classList.add('ok');
+            contadorCorrectas++;
+            if (contadorCorrectas==cant) {
+              // alert("GANASTE PASAS AL NIVEL:"+(cant+1));
+              downModal(0);
+              $win.classList.add('ani_win');
+              contadorCorrectas=0;
+              cant=cant+1;
+            }
+          }else {
+            event.toElement.classList.add('bad');
+            downModal(1);
+            $container.getElementsByTagName('a')[correctas[contadorCorrectas]].classList.add('ok');
+            $lost.classList.add('ani_lost');
+            contadorCorrectas=0;
+            cant=1;
+          }
+        }
+      }
+      function downModal(selector){
+        if (selector==0) {
+          $title.textContent='Felicidades Ganaste!!!'
+          $parrafo.textContent='Subes al nivel: '+(cant+1);
+        }
+        else {
+          $title.textContent='Perdiste :('
+          $parrafo.textContent='Sigue intentando';
+        }
+        $overlay.style.visibility='visible';
+        $modal.style.animation='animationIn 0.8s forwards';
+      }
+      function upModal(){
+        $modal.style.animation='animationOut 0.8s forwards';
+        $overlay.style.visibility='hidden';
+      }
+
+
           $start.addEventListener('click', (event) =>{
-            limpiar();
             correctas =[];
-            $win.classList.remove('ani_win');
-            $lost.classList.remove('ani_lost');
             contadorCorrectas=0;
             cant=1;
             for (var i = 1; i <= cant; i++) {
@@ -267,9 +355,7 @@
           })
 
           $next.addEventListener('click', (event) =>{
-            limpiar();
-            $win.classList.remove('ani_win');
-            $lost.classList.remove('ani_lost');
+            upModal();
             correctas=[];
             for (var i = 1; i <= cant; i++) {
               correctas.push(Math.round(Math.random()*15));
@@ -285,27 +371,11 @@
               clearInterval(intervalo);
               contador=0;
               isActive=1;
-              console.log(correctas);
-            }
-            setTimeout(limpiar, 600);
-          }
-
-          function limpiar(){
-            for (var i = 0; i < 16; i++) {
-              $container.getElementsByTagName('a')[i].classList.remove('ok');
-              $container.getElementsByTagName('a')[i].classList.remove('bad');
             }
           }
 
 
-         // $cuadrado.addEventListener('animationend',
-         //   (event)=>{
-         //     console.log(event);
-         //     if (event.animationName === 'rebote') {
-         //       $cuadrado.style.animationName='cuadrado,escalera';
-         //       $cuadrado.style.animationDuration='2s';
-         //     }
-         //   })
+
       </script>
   </body>
 </html>
