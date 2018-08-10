@@ -306,7 +306,7 @@
         if(isActive==1)
         {
           if (event.toElement.text == correctas[contadorCorrectas]) {
-            event.toElement.classList.add('ok');
+            event.target.classList.add('ok');
             contadorCorrectas++;
             if (contadorCorrectas==cant) {
               // alert("GANASTE PASAS AL NIVEL:"+(cant+1));
@@ -316,7 +316,7 @@
               cant=cant+1;
             }
           }else {
-            event.toElement.classList.add('bad');
+            event.target.classList.add('bad');
             downModal(1);
             $container.getElementsByTagName('a')[correctas[contadorCorrectas]].classList.add('ok');
             $lost.classList.add('ani_lost');
