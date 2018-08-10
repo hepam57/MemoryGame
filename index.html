@@ -305,7 +305,7 @@
       function isClick(event){
         if(isActive==1)
         {
-          if (event.toElement.text == correctas[contadorCorrectas]) {
+          if (event.target.text == correctas[contadorCorrectas]) {
             event.target.classList.add('ok');
             contadorCorrectas++;
             if (contadorCorrectas==cant) {
